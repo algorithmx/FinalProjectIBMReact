@@ -3,32 +3,39 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
+function dollarToNumber(cost) {
+  return parseFloat(cost.replace('$', ''));
+}
+
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    return cart.reduce((total, item) => total + calculateTotalCost(item)  , 0);
   };
 
   const handleContinueShopping = (e) => {
-   
+    onContinueShopping(e);
   };
 
 
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({ ...item, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = (item) => {
-   
+    dispatch(updateQuantity({ ...item, quantity: item.quantity - 1 }));
   };
 
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    return (dollarToNumber(item.cost)) * item.quantity;
   };
 
   return (
