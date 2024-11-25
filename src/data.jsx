@@ -224,6 +224,7 @@ export const styleObjUl = {
 }
 
 export const styleA = {
+    textAlign: 'center',
     color: 'white',
     fontSize: '30px',
     textDecoration: 'none',
