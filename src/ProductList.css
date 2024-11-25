@@ -41,23 +41,33 @@ body {
 
 /* Product Grid */
 .product-grid {
-    display:flex;
+    margin: 10px;
+    padding: 10px;
     flex-direction: column;
     width: 100vw;
     align-items: center;
     justify-content: center;
 }
+
 .product-list {
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
-    /* background-color: pink; */
-    /* justify-content: space-between; */
     padding: 20px;
     width: 100%;
     align-items: center;
     justify-content: center;
 }
+
+.product-list-header {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 
 /* Product Card */
 .product-card {
@@ -70,8 +80,12 @@ body {
     border-radius: 5px;
     text-align: center;
     position: relative;
-    
     gap: 20px;
+}
+
+.product-card img{
+    height: 200px;
+    width: 200px;
 }
 
 /* Pseudo-classes - Hover effect on product button */
