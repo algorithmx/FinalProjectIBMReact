@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
@@ -8,21 +8,30 @@ import { plantsArray, styleObj, styleObjUl, styleA } from './data';
 function ProductList() {
     const dispatch = useDispatch();
     const [showCart, setShowCart] = useState(false);
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const [showPlants, setShowPlants] = useState(false);
     const [addedToCart, setAddedToCart] = useState({});
     const [cartItemCount, setCartItemCount] = useState(0);
+    const cartItems = useSelector((state) => {
+        // console.log("state.cart.items");
+        // console.log(state.cart.items);
+        return state.cart.items;
+    });
+
+    useEffect(() => {
+        const count = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+        setCartItemCount(count);
+    }, [cartItems]);
 
     const handleAddToCart = (product) => {
         if (product.name in addedToCart && addedToCart[product.name]) {
             return;
+        } else {
+            dispatch(addItem(product));
+            setAddedToCart((prevState) => ({
+                ...prevState,
+                [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
+            }));
         }
-        dispatch(addItem(product));
-        setAddedToCart((prevState) => ({
-            ...prevState,
-            [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-        }));
-        // Increment the cart item count
-        setCartItemCount(prevCount => prevCount + 1);
     };
 
     const handleCartClick = (e) => {
