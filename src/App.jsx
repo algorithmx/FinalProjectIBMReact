@@ -9,7 +9,7 @@ function App() {
       <div className={'landing-page'}>
         <div className="background-image"></div>
       </div>
-      <div className={'product-list-container visible'}>
+      <div className={'product-list-container'}>
         <ProductList />
       </div>
     </div>

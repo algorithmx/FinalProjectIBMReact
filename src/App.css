@@ -24,6 +24,7 @@
   background-position: center;
   filter: brightness(0.8);
 }
+
 .content {
   display: flex;
   align-items: center;
@@ -94,12 +95,12 @@
 .product-list-container {
   position: absolute;
   overflow-x: hidden;
-  top: 100vh;
+  top: 0;
   /* Initially off-screen */
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.3);
   /* Adjust background opacity as needed */
   transition: top 0.5s ease;
   /* Smooth transition for top property */
@@ -110,9 +111,6 @@
   backdrop-filter: blur(5px);
 }
 
-.product-list-container.visible {
-  top: 0;
-}
 /* LandingPage.css */
 @media screen and (max-width: 768px) {
   .content {
