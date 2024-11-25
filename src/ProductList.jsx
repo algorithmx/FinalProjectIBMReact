@@ -13,6 +13,9 @@ function ProductList() {
     const [cartItemCount, setCartItemCount] = useState(0);
 
     const handleAddToCart = (product) => {
+        if (product.name in addedToCart && addedToCart[product.name]) {
+            return;
+        }
         dispatch(addItem(product));
         setAddedToCart((prevState) => ({
             ...prevState,
